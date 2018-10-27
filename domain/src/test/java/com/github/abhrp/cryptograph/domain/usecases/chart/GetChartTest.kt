@@ -7,7 +7,7 @@ import com.github.abhrp.cryptograph.domain.model.ChartItem
 import com.github.abhrp.cryptograph.domain.repository.ChartsRepository
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
-import io.reactivex.Observable
+import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -30,16 +30,12 @@ class GetChartTest {
         getChart = GetChart(postExecutionThread, chartsRepository)
     }
 
-    private fun stubGetChart(observable: Observable<List<ChartItem>>, timeSpan: String, forceRefresh: Boolean) {
-        whenever(chartsRepository.getCharts(timeSpan, forceRefresh)).thenReturn(observable)
-    }
-
     @Test
     fun testGetChartCompletes() {
         val timeSpan = DataFactory.randomString()
         val forceRefresh = DataFactory.randomBoolean()
-        stubGetChart(Observable.just(ChartFactory.getRandomChartItemList(10)), timeSpan, forceRefresh)
-        val testObserver = getChart.buildUseCaseObservable(GetChart.Params.forChart(timeSpan, forceRefresh)).test()
+        stubGetChart(Single.just(ChartFactory.getRandomChartItemList(10)), timeSpan, forceRefresh)
+        val testObserver = getChart.buildUseCaseSingle(GetChart.Params.forChart(timeSpan, forceRefresh)).test()
         testObserver.assertComplete()
     }
 
@@ -47,8 +43,8 @@ class GetChartTest {
     fun testGetChartCallsRepositoryMethod() {
         val timeSpan = DataFactory.randomString()
         val forceRefresh = DataFactory.randomBoolean()
-        stubGetChart(Observable.just(ChartFactory.getRandomChartItemList(10)), timeSpan, forceRefresh)
-        getChart.buildUseCaseObservable(GetChart.Params.forChart(timeSpan, forceRefresh)).test()
+        stubGetChart(Single.just(ChartFactory.getRandomChartItemList(10)), timeSpan, forceRefresh)
+        getChart.buildUseCaseSingle(GetChart.Params.forChart(timeSpan, forceRefresh)).test()
         verify(chartsRepository).getCharts(timeSpan, forceRefresh)
     }
 
@@ -57,14 +53,17 @@ class GetChartTest {
         val timeSpan = DataFactory.randomString()
         val forceRefresh = DataFactory.randomBoolean()
         val chartItemList = ChartFactory.getRandomChartItemList(10)
-        stubGetChart(Observable.just(chartItemList), timeSpan, forceRefresh)
-        val testObserver = getChart.buildUseCaseObservable(GetChart.Params.forChart(timeSpan, forceRefresh)).test()
+        stubGetChart(Single.just(chartItemList), timeSpan, forceRefresh)
+        val testObserver = getChart.buildUseCaseSingle(GetChart.Params.forChart(timeSpan, forceRefresh)).test()
         testObserver.assertValue(chartItemList)
     }
 
     @Test(expected = IllegalArgumentException::class)
     fun testGetChartsThrowsIllegalArgumentException() {
-        getChart.buildUseCaseObservable().test()
+        getChart.buildUseCaseSingle().test()
     }
 
+    private fun stubGetChart(single: Single<List<ChartItem>>, timeSpan: String, forceRefresh: Boolean) {
+        whenever(chartsRepository.getCharts(timeSpan, forceRefresh)).thenReturn(single)
+    }
 }

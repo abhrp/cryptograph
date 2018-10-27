@@ -30,10 +30,6 @@ class GetChartPreferenceTest {
         getChartPreference = GetChartPreference(postExecutionThread, chartsRepository)
     }
 
-    private fun stubGetChartPreference(single: Single<ChartPreference>) {
-        whenever(chartsRepository.getChartsPreference()).thenReturn(single)
-    }
-
     @Test
     fun testGetChartPreferenceCompletes() {
         val chartPreference = ChartFactory.getRandomChartPreference()
@@ -58,4 +54,7 @@ class GetChartPreferenceTest {
         verify(chartsRepository).getChartsPreference()
     }
 
+    private fun stubGetChartPreference(single: Single<ChartPreference>) {
+        whenever(chartsRepository.getChartsPreference()).thenReturn(single)
+    }
 }

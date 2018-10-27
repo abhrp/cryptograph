@@ -3,7 +3,7 @@ ext {
     minSDKVersion = 16
     compileSDKVersion = 28
     targetSDKVersion = 28
-    kotlinVersion = "1.2.51"
+    kotlinVersion = "1.2.71"
     multiDexEnabled = true
 
     supportLibraryVersion = "28.0.0"
@@ -24,7 +24,7 @@ ext {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 
-    rxJavaVersion = "2.2.0"
+    rxKotlinVersion = "2.3.0"
     javaxAnnotationVersion = "1.3.2"
     javaxInjectVersion = "1"
 
@@ -39,7 +39,7 @@ ext {
     domainDependencies = [
             javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
             javaxInject: "javax.inject:javax.inject:${javaxInjectVersion}",
-            rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxJavaVersion}"
+            rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"
     ]
 
     domainTestDependencies = [
@@ -52,7 +52,7 @@ ext {
 
     dataDependencies = [
             kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
-            rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxJavaVersion}",
+            rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
             javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
             javaxInject: "javax.inject:javax.inject:${javaxInjectVersion}"
     ]
@@ -68,7 +68,7 @@ ext {
 
     remoteDependencies = [
             gson: "com.google.code.gson:gson:${gsonVersion}",
-            rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxJavaVersion}",
+            rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
             kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
             javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
             javaxInject: "javax.inject:javax.inject:${javaxInjectVersion}",
@@ -97,7 +97,7 @@ ext {
 
     cacheDependencies = [
             gson: "com.google.code.gson:gson:${gsonVersion}",
-            rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxJavaVersion}",
+            rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
             kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
             javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
             javaxInject: "javax.inject:javax.inject:${javaxInjectVersion}",
@@ -125,7 +125,7 @@ ext {
 
     presentationDependencies = [
             gson: "com.google.code.gson:gson:${gsonVersion}",
-            rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxJavaVersion}",
+            rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
             kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
             javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
             javaxInject: "javax.inject:javax.inject:${javaxInjectVersion}",
@@ -152,7 +152,7 @@ ext {
     ]
 
     mobileUIDependencies = [
-            rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxJavaVersion}",
+            rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
             kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
             javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
             javaxInject: "javax.inject:javax.inject:${javaxInjectVersion}",

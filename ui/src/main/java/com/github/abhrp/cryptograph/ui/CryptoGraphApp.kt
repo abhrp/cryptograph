@@ -1,4 +1,4 @@
-package com.github.abhrp.cryptograph
+package com.github.abhrp.cryptograph.ui
 
 import android.app.Application
 import android.content.Context

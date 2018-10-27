@@ -1,7 +1,8 @@
-package com.github.abhrp.cryptograph
+package com.github.abhrp.cryptograph.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.github.abhrp.cryptograph.R
 
 class MainActivity : AppCompatActivity() {
 

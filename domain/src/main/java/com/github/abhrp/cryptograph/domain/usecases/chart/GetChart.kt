@@ -14,7 +14,7 @@ class GetChart @Inject constructor(
     ObservableUseCase<List<ChartItem>, GetChart.Params>(postExecutionThread) {
 
 
-    override fun buildUseCaseObservable(params: Params?): Observable<List<ChartItem>> {
+    public override fun buildUseCaseObservable(params: Params?): Observable<List<ChartItem>> {
         params?.let {
             return chartsRepository.getCharts(it.timeSpan, it.forceRefresh)
         }

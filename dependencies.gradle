@@ -1,6 +1,6 @@
 ext {
     buildToolsVersion = "28.0.3"
-    minSDKVersion = 16
+    minSDKVersion = 21
     compileSDKVersion = 28
     targetSDKVersion = 28
     kotlinVersion = "1.2.71"
@@ -12,7 +12,7 @@ ext {
     retrofitVersion = '2.4.0'
     retrofitRxJavaAdapterVersion = '1.0.0'
     okHttpVersion = '3.10.0'
-    archComponents = '1.1.1'
+    archComponents = '2.0.0'
     gsonVersion = '2.8.5'
     androidTestRunner = '1.1.0-alpha3'
     androidTestRules = '1.1.0'
@@ -121,18 +121,17 @@ ext {
     ]
 
     presentationDependencies = [
-            gson: "com.google.code.gson:gson:${gsonVersion}",
             rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
             kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
             javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
             javaxInject: "javax.inject:javax.inject:${javaxInjectVersion}",
-            androidAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}",
-            daggerCompiler: "com.google.dagger:dagger-compiler:$daggerVersion",
-            dagger: "com.google.dagger:dagger:$daggerVersion",
             rxAndroid: "io.reactivex.rxjava2:rxandroid:${rxAndroid}",
-            archRuntime: "android.arch.lifecycle:runtime:${archComponents}",
-            archCompiler: "android.arch.lifecycle:compiler:${archComponents}",
-            archExtensions: "android.arch.lifecycle:extensions:${archComponents}",
+            archCommon: "androidx.lifecycle:lifecycle-common:${archComponents}",
+            archRuntime: "androidx.lifecycle:lifecycle-runtime:${archComponents}",
+            archCompiler: "androidx.lifecycle:lifecycle-compiler:${archComponents}",
+            archExtensions: "androidx.lifecycle:lifecycle-extensions:${archComponents}",
+            livedata: "androidx.lifecycle:lifecycle-livedata:${archComponents}",
+            viewmodel: "androidx.lifecycle:lifecycle-viewmodel:${archComponents}"
     ]
 
     presentationTestDependencies = [
@@ -140,9 +139,9 @@ ext {
             assertJ: "org.assertj:assertj-core:${assertJVersion}",
             mockitoKotlin: "com.nhaarman:mockito-kotlin-kt1.1:${mockitoKotlinVersion}",
             kotlinUnit: "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVersion}",
-            androidRunner: "com.android.support.test:runner:${androidTestRunner}",
-            androidTestRules: "com.android.support.test:rules:${androidTestRunner}",
-            archTesting: "android.arch.core:core-testing:$archComponents",
+            androidRunner: "androidx.test:runner:${androidTestRunner}",
+            androidTestRules: "androidx.test:rules:${androidTestRunner}",
+            archTesting: "androidx.arch.core:core-testing:${androidxCoreTesting}",
             robolectric: "org.robolectric:robolectric:${robolectricVersion}",
             mockitoCore: "org.mockito:mockito-core:${mockitoVersion}",
             mockitoInline: "org.mockito:mockito-inline:${mockitoVersion}"

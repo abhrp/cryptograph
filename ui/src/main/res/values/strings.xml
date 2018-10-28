@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">CryptoGraph</string>
+    <string name="date_format">dd MMMM yyyy</string>
+    <string name="one_week">1week</string>
+    <string name="one_month">4weeks</string>
+    <string name="three_months">3months</string>
+    <string name="six_months">6months</string>
+    <string name="twelve_months">12months</string>
+    <string name="five_years">5years</string>
+    <string name="one_week_label">1 week</string>
+    <string name="one_month_label">1 month</string>
+    <string name="three_months_label">3 months</string>
+    <string name="six_months_label">6 months</string>
+    <string name="one_year_label">1 year</string>
+    <string name="five_years_label">5 years</string>
 </resources>

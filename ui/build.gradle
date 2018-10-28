@@ -76,6 +76,8 @@ dependencies {
     implementation uiDependencies.anyChart
     implementation uiDependencies.multidex
 
+    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     kapt uiDependencies.daggerProcessor
     kapt uiDependencies.daggerCompiler
     kapt uiDependencies.archCompiler

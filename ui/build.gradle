@@ -9,7 +9,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.github.abhrp.cryptograph.ui"
+        applicationId "com.github.abhrp.cryptograph"
         minSdkVersion rootProject.ext.minSDKVersion
         targetSdkVersion rootProject.ext.targetSDKVersion
 
@@ -76,8 +76,6 @@ dependencies {
     implementation uiDependencies.anyChart
     implementation uiDependencies.multidex
 
-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     kapt uiDependencies.daggerProcessor
     kapt uiDependencies.daggerCompiler
     kapt uiDependencies.archCompiler
@@ -88,10 +86,11 @@ dependencies {
     testImplementation uiTestDependencies.mockitoKotlin
     testImplementation uiTestDependencies.mockitoCore
     testImplementation uiTestDependencies.mockitoInline
-    androidTestImplementation uiTestDependencies.mockitoAndroid
     testImplementation uiTestDependencies.assertJ
     testImplementation uiTestDependencies.archTesting
     testImplementation uiTestDependencies.robolectric
+
+    androidTestImplementation uiTestDependencies.mockitoAndroid
 
     androidTestImplementation(uiTestDependencies.androidTestRules) {
         exclude group: 'com.android.support', module: 'support-annotations'

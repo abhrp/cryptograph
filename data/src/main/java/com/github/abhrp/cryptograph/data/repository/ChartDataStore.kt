@@ -9,6 +9,7 @@ import io.reactivex.Single
 interface ChartDataStore {
 
     fun getChart(timeSpan: String): Single<List<ChartItemEntity>>
+    fun setChartPreference(chartPreferenceEntity: ChartPreferenceEntity): Completable
     fun getChartPreference(): Single<ChartPreferenceEntity>
     fun clearChart(timeSpan: String): Completable
     fun saveChart(timeSpan: String, chartData: List<ChartItemEntity>): Completable

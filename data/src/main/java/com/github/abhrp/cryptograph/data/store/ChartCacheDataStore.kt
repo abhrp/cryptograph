@@ -12,11 +12,15 @@ class ChartCacheDataStore @Inject constructor(private val chartCache: ChartCache
 
     override fun getChart(timeSpan: String): Single<List<ChartItemEntity>> = chartCache.getChart(timeSpan)
 
+    override fun setChartPreference(chartPreferenceEntity: ChartPreferenceEntity): Completable =
+        chartCache.setChartPreference(chartPreferenceEntity)
+
     override fun getChartPreference(): Single<ChartPreferenceEntity> = chartCache.getChartPreference()
 
     override fun clearChart(timeSpan: String): Completable = chartCache.clearChart(timeSpan)
 
     override fun saveChart(timeSpan: String, chartData: List<ChartItemEntity>): Completable =
         chartCache.saveChart(timeSpan, chartData)
+            .andThen(chartCache.setLastCacheTime(timeSpan, System.currentTimeMillis()))
 
 }

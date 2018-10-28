@@ -63,6 +63,22 @@ class GetChartTest {
         getChart.buildUseCaseSingle().test()
     }
 
+    @Test(expected = IllegalArgumentException::class)
+    fun testGetChartsThrowsIllegalArgumentExceptionIfTimeSpanIsEmpty() {
+        val forceRefresh = DataFactory.randomBoolean()
+        val chartItemList = ChartFactory.getRandomChartItemList(10)
+        stubGetChart(Single.just(chartItemList), "", forceRefresh)
+        getChart.buildUseCaseSingle(GetChart.Params.forChart("", forceRefresh)).test()
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun testGetChartsThrowsIllegalArgumentExceptionIfTimeSpanHasWhitespace() {
+        val forceRefresh = DataFactory.randomBoolean()
+        val chartItemList = ChartFactory.getRandomChartItemList(10)
+        stubGetChart(Single.just(chartItemList), "  ", forceRefresh)
+        getChart.buildUseCaseSingle(GetChart.Params.forChart("  ", forceRefresh)).test()
+    }
+
     private fun stubGetChart(single: Single<List<ChartItem>>, timeSpan: String, forceRefresh: Boolean) {
         whenever(chartsRepository.getCharts(timeSpan, forceRefresh)).thenReturn(single)
     }

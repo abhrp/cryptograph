@@ -73,6 +73,14 @@ class ChartCacheImplTest {
     }
 
     @Test
+    fun testSetChartPreferenceCompletes() {
+        val timeSpan = DataFactory.randomString()
+        val chartPreferenceEntity = ChartPreferenceEntity(timeSpan)
+        val testObserver = chartCacheImpl.setChartPreference(chartPreferenceEntity).test()
+        testObserver.assertComplete()
+    }
+
+    @Test
     fun testGetChartPreferenceCompletes() {
         val timeSpan = DataFactory.randomString()
         stubLastTimeSpanSelection(timeSpan)

@@ -70,6 +70,17 @@ class ChartDataRepositoryTest {
     }
 
     @Test
+    fun testSetChartPreferenceCompletes() {
+        stubGetCacheDataStore(chartCacheDataStore)
+        val chartPreferenceEntity = ChartFactory.getRandomChartPreferenceEntity()
+        stubSetChartPreference(Completable.complete(), chartPreferenceEntity)
+        val chartPreference = ChartFactory.getRandomChartPreference()
+        stubMapToChartPreferenceEntity(chartPreference, chartPreferenceEntity)
+        val testObserver = chartDataRepository.setChartsPreference(chartPreference).test()
+        testObserver.assertComplete()
+    }
+
+    @Test
     fun testGetChartPreferenceCompletes() {
         stubGetCacheDataStore(chartCacheDataStore)
         val chartPreferenceEntity = ChartFactory.getRandomChartPreferenceEntity()
@@ -127,11 +138,19 @@ class ChartDataRepositoryTest {
         whenever(chartDataStoreFactory.getCacheDataStore()).thenReturn(cacheDataStore)
     }
 
+    private fun stubSetChartPreference(completable: Completable, chartPreferenceEntity: ChartPreferenceEntity) {
+        whenever(chartCacheDataStore.setChartPreference(chartPreferenceEntity)).thenReturn(completable)
+    }
+
     private fun stubGetChartPreference(single: Single<ChartPreferenceEntity>) {
         whenever(chartCacheDataStore.getChartPreference()).thenReturn(single)
     }
 
     private fun stubMapToChartPreference(domain: ChartPreference, entity: ChartPreferenceEntity) {
         whenever(chartPreferenceEntityMapper.mapToDomain(entity)).thenReturn(domain)
+    }
+
+    private fun stubMapToChartPreferenceEntity(domain: ChartPreference, entity: ChartPreferenceEntity) {
+        whenever(chartPreferenceEntityMapper.mapToEntity(domain)).thenReturn(entity)
     }
 }

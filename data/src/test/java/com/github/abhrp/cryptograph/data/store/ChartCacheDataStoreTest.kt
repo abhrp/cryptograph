@@ -72,10 +72,28 @@ class ChartCacheDataStoreTest {
     }
 
     @Test
+    fun testSetChartPreferenceCompletes() {
+        val chartPreferenceEntity = ChartFactory.getRandomChartPreferenceEntity()
+        stubSetChartPreference(Completable.complete(), chartPreferenceEntity)
+        val testObserver = chartCacheDataStore.setChartPreference(chartPreferenceEntity).test()
+        testObserver.assertComplete()
+    }
+
+    @Test
+    fun testSetChartPreferenceCallsCache() {
+        val chartPreferenceEntity = ChartFactory.getRandomChartPreferenceEntity()
+        stubSetChartPreference(Completable.complete(), chartPreferenceEntity)
+        chartCacheDataStore.setChartPreference(chartPreferenceEntity).test()
+        verify(chartCache).setChartPreference(chartPreferenceEntity)
+    }
+
+    @Test
     fun testSaveChartCompletes() {
         val timeSpan = DataFactory.randomString()
         val chartData = ChartFactory.getRandomChartItemEntityList(100)
         stubSaveChart(Completable.complete(), timeSpan, chartData)
+        val lastCacheTime = DataFactory.randomLong()
+        stubSaveLastCacheTime(Completable.complete(), timeSpan, lastCacheTime)
         val testObserver = chartCacheDataStore.saveChart(timeSpan, chartData).test()
         testObserver.assertComplete()
     }
@@ -85,6 +103,8 @@ class ChartCacheDataStoreTest {
         val timeSpan = DataFactory.randomString()
         val chartData = ChartFactory.getRandomChartItemEntityList(100)
         stubSaveChart(Completable.complete(), timeSpan, chartData)
+        val lastCacheTime = DataFactory.randomLong()
+        stubSaveLastCacheTime(Completable.complete(), timeSpan, lastCacheTime)
         chartCacheDataStore.saveChart(timeSpan, chartData).test()
         verify(chartCache).saveChart(timeSpan, chartData)
     }
@@ -109,12 +129,20 @@ class ChartCacheDataStoreTest {
         whenever(chartCache.getChart(timeSpan)).thenReturn(single)
     }
 
+    private fun stubSetChartPreference(completable: Completable, chartPreferenceEntity: ChartPreferenceEntity) {
+        whenever(chartCache.setChartPreference(chartPreferenceEntity)).thenReturn(completable)
+    }
+
     private fun stubGetChartPreference(single: Single<ChartPreferenceEntity>) {
         whenever(chartCache.getChartPreference()).thenReturn(single)
     }
 
     private fun stubSaveChart(completable: Completable, timeSpan: String, chartData: List<ChartItemEntity>) {
         whenever(chartCache.saveChart(timeSpan, chartData)).thenReturn(completable)
+    }
+
+    private fun stubSaveLastCacheTime(completable: Completable, timeSpan: String, lastCacheTime: Long) {
+        whenever(chartCache.setLastCacheTime(timeSpan, lastCacheTime)).thenReturn(completable)
     }
 
     private fun stubClearChart(completable: Completable, timeSpan: String) {

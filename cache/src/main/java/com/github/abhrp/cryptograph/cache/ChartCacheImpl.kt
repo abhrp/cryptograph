@@ -28,6 +28,13 @@ class ChartCacheImpl @Inject constructor(
             }
     }
 
+    override fun setChartPreference(chartPreferenceEntity: ChartPreferenceEntity): Completable {
+        return Completable.defer {
+            chartSharedPreferences.lastTimeSpanSelection = chartPreferenceEntity.timeSpan
+            Completable.complete()
+        }
+    }
+
     override fun getChartPreference(): Single<ChartPreferenceEntity> {
         return Single.just(chartSharedPreferences.lastTimeSpanSelection)
             .map {

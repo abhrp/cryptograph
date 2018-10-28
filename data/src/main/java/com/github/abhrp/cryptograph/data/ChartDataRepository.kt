@@ -9,6 +9,7 @@ import com.github.abhrp.cryptograph.data.store.ChartRemoteDataStore
 import com.github.abhrp.cryptograph.domain.model.ChartItem
 import com.github.abhrp.cryptograph.domain.model.ChartPreference
 import com.github.abhrp.cryptograph.domain.repository.ChartsRepository
+import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.functions.BiFunction
 import javax.inject.Inject
@@ -48,6 +49,11 @@ class ChartDataRepository @Inject constructor(
                     chartItemEntityMapper.mapToDomain(it)
                 }
             }
+    }
+
+    override fun setChartsPreference(chartPreference: ChartPreference): Completable {
+        return chartDataStoreFactory.getCacheDataStore()
+            .setChartPreference(chartPreferenceEntityMapper.mapToEntity(chartPreference))
     }
 
     override fun getChartsPreference(): Single<ChartPreference> {

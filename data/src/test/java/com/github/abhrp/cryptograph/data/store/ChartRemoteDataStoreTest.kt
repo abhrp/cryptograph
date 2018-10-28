@@ -3,6 +3,7 @@ package com.github.abhrp.cryptograph.data.store
 import com.github.abhrp.cryptograph.data.factory.ChartFactory
 import com.github.abhrp.cryptograph.data.factory.DataFactory
 import com.github.abhrp.cryptograph.data.model.ChartItemEntity
+import com.github.abhrp.cryptograph.data.model.ChartPreferenceEntity
 import com.github.abhrp.cryptograph.data.repository.ChartRemote
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
@@ -46,17 +47,23 @@ class ChartRemoteDataStoreTest {
 
     @Test(expected = UnsupportedOperationException::class)
     fun testGetChartPreferenceThrowsUnsupportedOperationException() {
-        chartRemoteDataStore.getChartPreference()
+        chartRemoteDataStore.getChartPreference().test()
     }
 
     @Test(expected = UnsupportedOperationException::class)
     fun testClearChartThrowsUnsupportedOperationException() {
-        chartRemoteDataStore.clearChart(DataFactory.randomString())
+        chartRemoteDataStore.clearChart(DataFactory.randomString()).test()
     }
 
     @Test(expected = UnsupportedOperationException::class)
     fun testSaveChartThrowsUnsupportedOperationException() {
         chartRemoteDataStore.saveChart(DataFactory.randomString(), ChartFactory.getRandomChartItemEntityList(100))
+            .test()
+    }
+
+    @Test(expected = UnsupportedOperationException::class)
+    fun testSetChartPreferenceThrowsUnsupportedOperationException() {
+        chartRemoteDataStore.setChartPreference(ChartPreferenceEntity("")).test()
     }
 
     private fun stubGetChart(single: Single<List<ChartItemEntity>>, timeSpan: String) {

@@ -9,9 +9,9 @@ object CacheConstants {
     const val TABLE_CACHE_TIME = "cache_time"
     const val COL_TIME_STAMP = "time_stamp"
 
-    const val SELECT_ALL_CHART_ITEMS = "select * from $TABLE_CHART_ITEM where $COL_TIME_SPAN=:timeSpan"
-    const val DELETE_CHART_ITEMS = "delete from $TABLE_CHART_ITEM where $COL_TIME_SPAN=:timeSpan"
+    const val SELECT_ALL_CHART_ITEMS = "select * from $TABLE_CHART_ITEM where $COL_TIME_SPAN=:TIME_SPAN"
+    const val DELETE_CHART_ITEMS = "delete from $TABLE_CHART_ITEM where $COL_TIME_SPAN=:TIME_SPAN"
 
-    const val SELECT_CACHE_TIME = "select * from $TABLE_CACHE_TIME where $COL_TIME_SPAN=:timeSpan"
-    const val DELETE_CACHE_TIME = "delete from $TABLE_CACHE_TIME where $COL_TIME_SPAN=:timeSpan"
+    const val SELECT_CACHE_TIME = "select * from $TABLE_CACHE_TIME where $COL_TIME_SPAN=:TIME_SPAN"
+    const val DELETE_CACHE_TIME = "delete from $TABLE_CACHE_TIME where $COL_TIME_SPAN=:TIME_SPAN"
 }

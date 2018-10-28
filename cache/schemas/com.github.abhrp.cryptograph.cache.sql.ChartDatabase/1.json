@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "4b7c135683d02bb88ab5ec994c665987",
+    "identityHash": "f1abdbeb431282388e44c59f124f6bf4",
     "entities": [
       {
         "tableName": "chart_item",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`item_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `time_span` TEXT NOT NULL, `datetime` INTEGER NOT NULL, `value` REAL NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`item_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `timeSpan` TEXT NOT NULL, `datetime` INTEGER NOT NULL, `value` REAL NOT NULL)",
         "fields": [
           {
             "fieldPath": "itemId",
@@ -16,7 +16,7 @@
           },
           {
             "fieldPath": "timeSpan",
-            "columnName": "time_span",
+            "columnName": "timeSpan",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -44,11 +44,11 @@
       },
       {
         "tableName": "cache_time",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`time_span` TEXT NOT NULL, `time_stamp` INTEGER NOT NULL, PRIMARY KEY(`time_span`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`timeSpan` TEXT NOT NULL, `time_stamp` INTEGER NOT NULL, PRIMARY KEY(`timeSpan`))",
         "fields": [
           {
             "fieldPath": "timeSpan",
-            "columnName": "time_span",
+            "columnName": "timeSpan",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -61,7 +61,7 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "time_span"
+            "timeSpan"
           ],
           "autoGenerate": false
         },
@@ -71,7 +71,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"4b7c135683d02bb88ab5ec994c665987\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"f1abdbeb431282388e44c59f124f6bf4\")"
     ]
   }
 }

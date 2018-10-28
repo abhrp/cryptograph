@@ -37,7 +37,8 @@ class ChartDataRepository @Inject constructor(
         return chartDataStore.getChart(timeSpan)
             .flatMap { chartItemList ->
                 if (chartDataStore is ChartRemoteDataStore) {
-                    chartDataStoreFactory.getCacheDataStore().saveChart(timeSpan, chartItemList)
+                    chartDataStoreFactory.getCacheDataStore().clearChart(timeSpan)
+                        .andThen(chartDataStoreFactory.getCacheDataStore().saveChart(timeSpan, chartItemList))
                         .andThen(Single.just(chartItemList))
                 } else {
                     Single.just(chartItemList)

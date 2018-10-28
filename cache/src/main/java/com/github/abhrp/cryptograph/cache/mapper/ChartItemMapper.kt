@@ -8,7 +8,12 @@ class ChartItemMapper @Inject constructor() : CacheMapper<String, CachedChartIte
 
     override fun mapToCache(param: String?, entity: ChartItemEntity): CachedChartItem {
         param?.let {
-            return CachedChartItem(0, param, entity.datetime, entity.value)
+            return if (it.trim() != "" && it.isNotEmpty()) CachedChartItem(
+                0,
+                param,
+                entity.datetime,
+                entity.value
+            ) else throw java.lang.IllegalArgumentException("Param cannot be empty")
         }
         throw IllegalArgumentException("Param cannot be null")
     }

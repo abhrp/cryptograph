@@ -1,7 +1,7 @@
 package com.github.abhrp.cryptograph.cache
 
 import com.github.abhrp.cryptograph.cache.mapper.ChartItemMapper
-import com.github.abhrp.cryptograph.cache.model.CacheTimeEntity
+import com.github.abhrp.cryptograph.cache.model.LastCacheTime
 import com.github.abhrp.cryptograph.cache.sharedpreferences.ChartSharedPreferences
 import com.github.abhrp.cryptograph.cache.sql.ChartDatabase
 import com.github.abhrp.cryptograph.data.model.ChartItemEntity
@@ -52,13 +52,14 @@ class ChartCacheImpl @Inject constructor(
     }
 
     override fun isChartCached(timeSpan: String): Single<Boolean> {
-        return chartDatabase.getChartItemDao().getChartItems(timeSpan).isEmpty
+        return chartDatabase.getChartItemDao().getChartItems(timeSpan).isEmpty.map {
+            !it
+        }
     }
 
-    override fun setLastCacheTime(timeSpan: String): Completable {
+    override fun setLastCacheTime(timeSpan: String, lastCacheTime: Long): Completable {
         return Completable.defer {
-            val cacheTime = System.currentTimeMillis()
-            val cacheTimeEntity = CacheTimeEntity(timeSpan, cacheTime)
+            val cacheTimeEntity = LastCacheTime(timeSpan, lastCacheTime)
             chartDatabase.getCacheTimeDao().insertCacheTime(cacheTimeEntity)
             Completable.complete()
         }
@@ -70,10 +71,10 @@ class ChartCacheImpl @Inject constructor(
         }
     }
 
-    private fun isExpired(cacheTimeEntity: CacheTimeEntity): Boolean {
-        val lastCacheTime = cacheTimeEntity.timestamp
+    private fun isExpired(lastCacheTime: LastCacheTime): Boolean {
+        val cacheTime = lastCacheTime.timestamp
         val currentTime = System.currentTimeMillis()
         val expirationTime = (60 * 9 * 1000).toLong()
-        return currentTime - lastCacheTime > expirationTime
+        return currentTime - cacheTime > expirationTime
     }
 }

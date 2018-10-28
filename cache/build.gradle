@@ -49,13 +49,10 @@ dependencies {
     implementation cacheDependencies.rxKotlin
     implementation cacheDependencies.javaxAnnotation
     implementation cacheDependencies.javaxInject
-    implementation cacheDependencies.moshi
     implementation cacheDependencies.roomRuntime
     implementation cacheDependencies.roomRx
-    implementation cacheDependencies.dagger
 
     kapt cacheDependencies.roomCompiler
-    kapt cacheDependencies.daggerCompiler
 
     testImplementation cacheTestDependencies.kotlinUnit
     testImplementation cacheTestDependencies.jUnit

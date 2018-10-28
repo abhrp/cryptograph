@@ -6,10 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.github.abhrp.cryptograph.cache.dao.CacheTimeDao
 import com.github.abhrp.cryptograph.cache.dao.ChartItemDao
-import com.github.abhrp.cryptograph.cache.model.CacheTimeEntity
 import com.github.abhrp.cryptograph.cache.model.CachedChartItem
+import com.github.abhrp.cryptograph.cache.model.LastCacheTime
 
-@Database(entities = arrayOf(CachedChartItem::class, CacheTimeEntity::class), version = 1)
+@Database(entities = [CachedChartItem::class, LastCacheTime::class], version = 1)
 abstract class ChartDatabase : RoomDatabase() {
     abstract fun getChartItemDao(): ChartItemDao
     abstract fun getCacheTimeDao(): CacheTimeDao

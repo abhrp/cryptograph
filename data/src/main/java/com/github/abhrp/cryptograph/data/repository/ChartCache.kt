@@ -11,6 +11,6 @@ interface ChartCache {
     fun clearChart(timeSpan: String): Completable
     fun saveChart(timeSpan: String, chartData: List<ChartItemEntity>): Completable
     fun isChartCached(timeSpan: String): Single<Boolean>
-    fun setLastCacheTime(timeSpan: String): Completable
+    fun setLastCacheTime(timeSpan: String, lastCacheTime: Long): Completable
     fun isCacheExpired(timeSpan: String): Single<Boolean>
 }

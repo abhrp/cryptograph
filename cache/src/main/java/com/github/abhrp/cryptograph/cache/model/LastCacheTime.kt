@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.github.abhrp.cryptograph.cache.constants.CacheConstants
 
 @Entity(tableName = CacheConstants.TABLE_CACHE_TIME)
-data class CacheTimeEntity(
+data class LastCacheTime(
     @PrimaryKey
     @ColumnInfo(name = CacheConstants.COL_TIME_SPAN)
     val timeSpan: String,

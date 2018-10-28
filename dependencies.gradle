@@ -7,14 +7,16 @@ ext {
     multiDexEnabled = true
 
     supportLibraryVersion = "28.0.0"
-    roomVersion = "1.1.1"
+    roomVersion = "2.0.0"
     daggerVersion = "2.16"
     retrofitVersion = '2.4.0'
     retrofitRxJavaAdapterVersion = '1.0.0'
     okHttpVersion = '3.10.0'
     archComponents = '1.1.1'
     gsonVersion = '2.8.5'
-    androidTestRunner = '1.0.2'
+    androidTestRunner = '1.1.0-alpha3'
+    androidTestRules = '1.1.0'
+    androidxCoreTesting = '2.0.0'
     rxAndroid = '2.0.2'
     picassoVersion = '2.71828'
     timberVersion = '4.7.1'
@@ -31,7 +33,7 @@ ext {
     jUnitVersion = "4.12"
     assertJVersion = "3.10.0"
     mockitoKotlinVersion = "1.6.0"
-    robolectricVersion = "3.8"
+    robolectricVersion = "4.0"
     mockitoVersion = '2.19.0'
     espressoVersion = '3.0.2'
     moshiVersion = '1.6.0'
@@ -88,24 +90,20 @@ ext {
             assertJ: "org.assertj:assertj-core:${assertJVersion}",
             mockitoKotlin: "com.nhaarman:mockito-kotlin-kt1.1:${mockitoKotlinVersion}",
             kotlinUnit: "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVersion}",
-            androidRunner: "com.android.support.test:runner:${androidTestRunner}",
-            androidTestRules: "com.android.support.test:rules:${androidTestRunner}",
+            androidRunner: "androidx.test:runner:${androidTestRunner}",
+            androidTestRules: "androidx.test:rules:${androidTestRunner}",
             mockitoCore: "org.mockito:mockito-core:${mockitoVersion}",
             mockitoInline: "org.mockito:mockito-inline:${mockitoVersion}"
     ]
 
     cacheDependencies = [
-            moshi: "com.squareup.moshi:moshi-kotlin:${moshiVersion}",
             rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
             kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
             javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
             javaxInject: "javax.inject:javax.inject:${javaxInjectVersion}",
-            androidAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}",
-            roomRuntime: "android.arch.persistence.room:runtime:$roomVersion",
-            roomCompiler: "android.arch.persistence.room:compiler:$roomVersion",
-            roomRx: "android.arch.persistence.room:rxjava2:$roomVersion",
-            daggerCompiler: "com.google.dagger:dagger-compiler:$daggerVersion",
-            dagger: "com.google.dagger:dagger:$daggerVersion"
+            roomRuntime: "androidx.room:room-runtime:$roomVersion",
+            roomCompiler: "androidx.room:room-compiler:$roomVersion",
+            roomRx: "androidx.room:room-rxjava2:$roomVersion"
     ]
 
     cacheTestDependencies = [
@@ -113,10 +111,10 @@ ext {
             assertJ: "org.assertj:assertj-core:${assertJVersion}",
             mockitoKotlin: "com.nhaarman:mockito-kotlin-kt1.1:${mockitoKotlinVersion}",
             kotlinUnit: "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVersion}",
-            androidRunner: "com.android.support.test:runner:${androidTestRunner}",
-            androidTestRules: "com.android.support.test:rules:${androidTestRunner}",
-            roomTesting: "android.arch.persistence.room:testing:$roomVersion",
-            archTesting: "android.arch.core:core-testing:$archComponents",
+            androidRunner: "androidx.test:runner:${androidTestRunner}",
+            androidTestRules: "androidx.test:rules:${androidTestRunner}",
+            roomTesting: "androidx.room:room-testing:${roomVersion}",
+            archTesting: "androidx.arch.core:core-testing:${androidxCoreTesting}",
             robolectric: "org.robolectric:robolectric:${robolectricVersion}",
             mockitoCore: "org.mockito:mockito-core:${mockitoVersion}",
             mockitoInline: "org.mockito:mockito-inline:${mockitoVersion}"

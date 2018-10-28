@@ -43,22 +43,81 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    def uiDependencies = rootProject.ext.uiDependencies
+    def uiTestDependencies = rootProject.ext.uiTestDependencies
 
-    implementation project(':domain')
     implementation project(':data')
+    implementation project(':domain')
     implementation project(':remote')
     implementation project(':cache')
     implementation project(':presentation')
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation uiDependencies.rxKotlin
+    implementation uiDependencies.kotlin
+    implementation uiDependencies.javaxAnnotation
+    implementation uiDependencies.javaxInject
+    implementation uiDependencies.androidAnnotations
+    implementation uiDependencies.dagger
+    implementation uiDependencies.rxAndroid
+    implementation uiDependencies.archCommon
+    implementation uiDependencies.archRuntime
+    implementation uiDependencies.archExtensions
+    implementation uiDependencies.livedata
+    implementation uiDependencies.viewmodel
+    implementation uiDependencies.timber
+    implementation uiDependencies.supportAppCompat
+    implementation uiDependencies.supportV4
+    implementation uiDependencies.recyclerView
+    implementation uiDependencies.design
+    implementation uiDependencies.daggerSupport
+    implementation uiDependencies.roomRuntime
+    implementation uiDependencies.constraintLayout
+    implementation uiDependencies.constraintSolver
+    implementation uiDependencies.anyChart
+    implementation uiDependencies.multidex
 
-    implementation 'com.android.support:multidex:1.0.3'
+    kapt uiDependencies.daggerProcessor
+    kapt uiDependencies.daggerCompiler
+    kapt uiDependencies.archCompiler
+    kapt uiDependencies.roomCompiler
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    testImplementation uiTestDependencies.kotlinUnit
+    testImplementation uiTestDependencies.jUnit
+    testImplementation uiTestDependencies.mockitoKotlin
+    testImplementation uiTestDependencies.mockitoCore
+    testImplementation uiTestDependencies.mockitoInline
+    androidTestImplementation uiTestDependencies.mockitoAndroid
+    testImplementation uiTestDependencies.assertJ
+    testImplementation uiTestDependencies.archTesting
+    testImplementation uiTestDependencies.robolectric
+
+    androidTestImplementation(uiTestDependencies.androidTestRules) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation(uiTestDependencies.androidRunner) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+
+    androidTestImplementation(uiTestDependencies.espressoCore) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+
+    androidTestImplementation(uiTestDependencies.espressoIntents) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+
+    androidTestImplementation(uiTestDependencies.espressoContrib) {
+        exclude module: 'support-annotations'
+        exclude module: 'support-v4'
+        exclude module: 'support-v13'
+        exclude module: 'appcompat'
+        exclude module: 'appcompat-v7'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'design'
+    }
+
+    androidTestImplementation uiTestDependencies.multidexInstrumentation
+
+    kaptTest uiDependencies.daggerCompiler
+    kaptAndroidTest uiDependencies.daggerCompiler
 }

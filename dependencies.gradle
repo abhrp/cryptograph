@@ -35,8 +35,17 @@ ext {
     mockitoKotlinVersion = "1.6.0"
     robolectricVersion = "4.0"
     mockitoVersion = '2.19.0'
-    espressoVersion = '3.0.2'
+    espressoVersion = '3.1.0'
     moshiVersion = '1.6.0'
+
+    androidxAnnotation = '1.0.0'
+    androidxAppCompat = '1.0.0'
+    androidxV4 = '1.0.0'
+    androidxRecyclerView = '1.0.0'
+    materialDesign = '1.0.0'
+
+    anyChartVersion = '1.0.5'
+    multidexVersion = '2.0.0'
 
     domainDependencies = [
             javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
@@ -147,48 +156,53 @@ ext {
             mockitoInline: "org.mockito:mockito-inline:${mockitoVersion}"
     ]
 
-    mobileUIDependencies = [
+    uiDependencies = [
             rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
             kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
             javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
             javaxInject: "javax.inject:javax.inject:${javaxInjectVersion}",
-            androidAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}",
+            androidAnnotations: "androidx.annotation:annotation:${androidxAnnotation}",
             daggerCompiler: "com.google.dagger:dagger-compiler:$daggerVersion",
             dagger: "com.google.dagger:dagger:$daggerVersion",
             rxAndroid: "io.reactivex.rxjava2:rxandroid:${rxAndroid}",
-            archRuntime: "android.arch.lifecycle:runtime:${archComponents}",
-            archCompiler: "android.arch.lifecycle:compiler:${archComponents}",
-            archExtensions: "android.arch.lifecycle:extensions:${archComponents}",
+            archCommon: "androidx.lifecycle:lifecycle-common:${archComponents}",
+            archRuntime: "androidx.lifecycle:lifecycle-runtime:${archComponents}",
+            archCompiler: "androidx.lifecycle:lifecycle-compiler:${archComponents}",
+            archExtensions: "androidx.lifecycle:lifecycle-extensions:${archComponents}",
+            livedata: "androidx.lifecycle:lifecycle-livedata:${archComponents}",
+            viewmodel: "androidx.lifecycle:lifecycle-viewmodel:${archComponents}",
             timber: "com.jakewharton.timber:timber:${timberVersion}",
-            picasso: "com.squareup.picasso:picasso:${picassoVersion}",
-            glassFishAnnotation: "org.glassfish:javax.annotation:${glassFishAnnotationVersion}",
-            supportAppCompat: "com.android.support:appcompat-v7:${supportLibraryVersion}",
-            supportV4: "com.android.support:support-v4:${supportLibraryVersion}",
-            recyclerView: "com.android.support:recyclerview-v7:${supportLibraryVersion}",
-            design: "com.android.support:design:${supportLibraryVersion}",
+            supportAppCompat: "androidx.appcompat:appcompat:${androidxAppCompat}",
+            supportV4: "androidx.legacy:legacy-support-v4:${androidxV4}",
+            recyclerView: "androidx.recyclerview:recyclerview:${androidxRecyclerView}",
+            design: "com.google.android.material:material:${materialDesign}",
             daggerSupport: "com.google.dagger:dagger-android-support:${daggerVersion}",
             daggerProcessor: "com.google.dagger:dagger-android-processor:${daggerVersion}",
-            roomRuntime: "android.arch.persistence.room:runtime:$roomVersion",
-            roomCompiler: "android.arch.persistence.room:compiler:$roomVersion",
-            roomRx: "android.arch.persistence.room:rxjava2:$roomVersion",
+            roomRuntime: "androidx.room:room-runtime:$roomVersion",
+            roomCompiler: "androidx.room:room-compiler:$roomVersion",
+            roomRx: "androidx.room:room-rxjava2:$roomVersion",
             kotlinReflect: "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion",
-            constraintLayout: "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}"
+            constraintLayout: "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}",
+            constraintSolver: "androidx.constraintlayout:constraintlayout-solver:${constraintLayoutVersion}",
+            anyChart: "com.github.AnyChart:AnyChart-Android:${anyChartVersion}",
+            multidex: "androidx.multidex:multidex:${multidexVersion}"
     ]
 
-    mobileUITestDependencies = [
+    uiTestDependencies = [
             jUnit: "junit:junit:${jUnitVersion}",
             assertJ: "org.assertj:assertj-core:${assertJVersion}",
             mockitoKotlin: "com.nhaarman:mockito-kotlin-kt1.1:${mockitoKotlinVersion}",
             kotlinUnit: "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVersion}",
-            androidRunner: "com.android.support.test:runner:${androidTestRunner}",
-            androidTestRules: "com.android.support.test:rules:${androidTestRunner}",
-            archTesting: "android.arch.core:core-testing:$archComponents",
+            androidRunner: "androidx.test:runner:${androidTestRunner}",
+            androidTestRules: "androidx.test:rules:${androidTestRunner}",
+            archTesting: "androidx.arch.core:core-testing:${androidxCoreTesting}",
             robolectric: "org.robolectric:robolectric:${robolectricVersion}",
             mockitoCore: "org.mockito:mockito-core:${mockitoVersion}",
             mockitoInline: "org.mockito:mockito-inline:${mockitoVersion}",
             mockitoAndroid: "org.mockito:mockito-android:${mockitoVersion}",
-            espressoCore: "com.android.support.test.espresso:espresso-core:${espressoVersion}",
-            espressoIntents: "com.android.support.test.espresso:espresso-intents:${espressoVersion}",
-            espressoContrib: "com.android.support.test.espresso:espresso-contrib:${espressoVersion}"
+            espressoCore: "androidx.test.espresso:espresso-core:${espressoVersion}",
+            espressoIntents: "androidx.test.espresso:espresso-intents:${espressoVersion}",
+            espressoContrib: "androidx.test.espresso:espresso-contrib:${espressoVersion}",
+            multidexInstrumentation: "androidx.multidex:multidex-instrumentation:${multidexVersion}"
     ]
 }

@@ -95,7 +95,7 @@ ext {
     ]
 
     cacheDependencies = [
-            gson: "com.google.code.gson:gson:${gsonVersion}",
+            moshi: "com.squareup.moshi:moshi-kotlin:${moshiVersion}",
             rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
             kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
             javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",

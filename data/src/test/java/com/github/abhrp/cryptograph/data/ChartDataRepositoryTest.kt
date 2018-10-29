@@ -40,11 +40,12 @@ class ChartDataRepositoryTest {
         val forceRefresh = DataFactory.randomBoolean()
         val chartItemEntity = ChartFactory.getRandomChartItemEntity()
         val chartItem = ChartFactory.getRandomChartItem()
+        val lastCacheTime = DataFactory.randomLong()
         stubChartCached(Single.just(isCached), timeSpan)
         stubCacheExpired(Single.just(isExpired), timeSpan)
         stubGetChartDataStore(chartDataStore, isCached, isExpired, forceRefresh)
         stubGetChartDataFromDataSore(Single.just(listOf(chartItemEntity)), timeSpan)
-        stubSaveChart(listOf(chartItemEntity), timeSpan, Completable.complete())
+        stubSaveChart(listOf(chartItemEntity), timeSpan, lastCacheTime, Completable.complete())
         stubMapToDomain(chartItem, chartItemEntity)
 
         val testObserver = chartDataRepository.getCharts(timeSpan, forceRefresh).test()
@@ -59,11 +60,12 @@ class ChartDataRepositoryTest {
         val forceRefresh = DataFactory.randomBoolean()
         val chartItemEntity = ChartFactory.getRandomChartItemEntity()
         val chartItem = ChartFactory.getRandomChartItem()
+        val lastCacheTime = DataFactory.randomLong()
         stubChartCached(Single.just(isCached), timeSpan)
         stubCacheExpired(Single.just(isExpired), timeSpan)
         stubGetChartDataStore(chartDataStore, isCached, isExpired, forceRefresh)
         stubGetChartDataFromDataSore(Single.just(listOf(chartItemEntity)), timeSpan)
-        stubSaveChart(listOf(chartItemEntity), timeSpan, Completable.complete())
+        stubSaveChart(listOf(chartItemEntity), timeSpan, lastCacheTime, Completable.complete())
         stubMapToDomain(chartItem, chartItemEntity)
         val testObserver = chartDataRepository.getCharts(timeSpan, forceRefresh).test()
         testObserver.assertValue(listOf(chartItem))
@@ -126,8 +128,13 @@ class ChartDataRepositoryTest {
         whenever(chartDataStore.getChart(timeSpan)).thenReturn(single)
     }
 
-    private fun stubSaveChart(chartData: List<ChartItemEntity>, timeSpan: String, completable: Completable) {
-        whenever(chartCacheDataStore.saveChart(timeSpan, chartData)).thenReturn(completable)
+    private fun stubSaveChart(
+        chartData: List<ChartItemEntity>,
+        timeSpan: String,
+        timestamp: Long,
+        completable: Completable
+    ) {
+        whenever(chartCacheDataStore.saveChart(timeSpan, chartData, timestamp)).thenReturn(completable)
     }
 
     private fun stubMapToDomain(domain: ChartItem, entity: ChartItemEntity) {

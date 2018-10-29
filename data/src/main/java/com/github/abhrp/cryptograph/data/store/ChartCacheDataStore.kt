@@ -19,8 +19,8 @@ class ChartCacheDataStore @Inject constructor(private val chartCache: ChartCache
 
     override fun clearChart(timeSpan: String): Completable = chartCache.clearChart(timeSpan)
 
-    override fun saveChart(timeSpan: String, chartData: List<ChartItemEntity>): Completable =
+    override fun saveChart(timeSpan: String, chartData: List<ChartItemEntity>, saveTimestamp: Long): Completable =
         chartCache.saveChart(timeSpan, chartData)
-            .andThen(chartCache.setLastCacheTime(timeSpan, System.currentTimeMillis()))
+            .andThen(chartCache.setLastCacheTime(timeSpan, saveTimestamp))
 
 }

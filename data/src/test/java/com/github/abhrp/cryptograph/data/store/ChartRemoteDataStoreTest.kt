@@ -57,7 +57,7 @@ class ChartRemoteDataStoreTest {
 
     @Test(expected = UnsupportedOperationException::class)
     fun testSaveChartThrowsUnsupportedOperationException() {
-        chartRemoteDataStore.saveChart(DataFactory.randomString(), ChartFactory.getRandomChartItemEntityList(100))
+        chartRemoteDataStore.saveChart(DataFactory.randomString(), ChartFactory.getRandomChartItemEntityList(100), 0)
             .test()
     }
 

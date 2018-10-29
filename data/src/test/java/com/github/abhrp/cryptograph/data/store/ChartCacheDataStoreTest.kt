@@ -94,7 +94,7 @@ class ChartCacheDataStoreTest {
         stubSaveChart(Completable.complete(), timeSpan, chartData)
         val lastCacheTime = DataFactory.randomLong()
         stubSaveLastCacheTime(Completable.complete(), timeSpan, lastCacheTime)
-        val testObserver = chartCacheDataStore.saveChart(timeSpan, chartData).test()
+        val testObserver = chartCacheDataStore.saveChart(timeSpan, chartData, lastCacheTime).test()
         testObserver.assertComplete()
     }
 
@@ -105,7 +105,7 @@ class ChartCacheDataStoreTest {
         stubSaveChart(Completable.complete(), timeSpan, chartData)
         val lastCacheTime = DataFactory.randomLong()
         stubSaveLastCacheTime(Completable.complete(), timeSpan, lastCacheTime)
-        chartCacheDataStore.saveChart(timeSpan, chartData).test()
+        chartCacheDataStore.saveChart(timeSpan, chartData, lastCacheTime).test()
         verify(chartCache).saveChart(timeSpan, chartData)
     }
 

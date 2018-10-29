@@ -12,6 +12,6 @@ interface ChartDataStore {
     fun setChartPreference(chartPreferenceEntity: ChartPreferenceEntity): Completable
     fun getChartPreference(): Single<ChartPreferenceEntity>
     fun clearChart(timeSpan: String): Completable
-    fun saveChart(timeSpan: String, chartData: List<ChartItemEntity>): Completable
+    fun saveChart(timeSpan: String, chartData: List<ChartItemEntity>, saveTimestamp: Long): Completable
 
 }

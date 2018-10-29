@@ -19,7 +19,7 @@ class ChartItemMapperTest {
         assertEquals(cachedChartItem.timeSpan, timeSpan)
         assertEquals(cachedChartItem.dateTime, chartItemEntity.datetime)
         assertEquals(cachedChartItem.value, chartItemEntity.value)
-        assertEquals(cachedChartItem.itemId, 1)
+        assertEquals(cachedChartItem.itemId, 0)
     }
 
     @Test(expected = IllegalArgumentException::class)

@@ -18,7 +18,11 @@ class ChartRemoteDataStore @Inject constructor(private val chartRemote: ChartRem
     override fun clearChart(timeSpan: String): Completable =
         throw UnsupportedOperationException("Not allowed on remote")
 
-    override fun saveChart(timeSpan: String, chartData: List<ChartItemEntity>): Completable =
+    override fun saveChart(
+        timeSpan: String,
+        chartData: List<ChartItemEntity>,
+        saveTimestamp: Long
+    ): Completable =
         throw UnsupportedOperationException("Not allowed on remote")
 
     override fun setChartPreference(chartPreferenceEntity: ChartPreferenceEntity): Completable =

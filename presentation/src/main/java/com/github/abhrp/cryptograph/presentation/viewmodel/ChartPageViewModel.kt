@@ -41,7 +41,7 @@ class ChartPageViewModel @Inject constructor(
 
     fun triggerChartPageScreen() {
         chartPreferenceLiveData.postValue(Resource(ResourceState.LOADING, null, null))
-        getChartPreference.execute(GetChartPreferenceSubscriber())
+        getChartPreference.execute(GetChartPreferenceSubscriber(), null)
     }
 
     fun setChartPreference(timeSpan: String) {

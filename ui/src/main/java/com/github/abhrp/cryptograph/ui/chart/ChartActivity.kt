@@ -68,7 +68,9 @@ class ChartActivity : AppCompatActivity(), ChartOptionClickListener {
     }
 
     private fun setUpSwipeToRefreshView() {
+        @Suppress("DEPRECATION")
         swipe_to_refresh_layout.setColorSchemeColors(resources.getColor(R.color.colorPrimary))
+
         swipe_to_refresh_layout.setOnRefreshListener {
             if (connectivityUtil.isConnectedToNetwork()) {
                 fetchChartData(chartPageViewModel.lastTimeSpan, true)

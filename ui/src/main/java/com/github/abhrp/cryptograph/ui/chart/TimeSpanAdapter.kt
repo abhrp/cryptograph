@@ -38,11 +38,15 @@ class TimeSpanAdapter @Inject constructor() : RecyclerView.Adapter<TimeSpanAdapt
 
     inner class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bind(chartPreferenceItem: ChartPreferenceItem, position: Int) {
+
             time_span_option.text = chartPreferenceItem.label
+
             time_span_option.background =
-                    if (chartPreferenceItem.isSelected) time_span_option.resources.getDrawable(R.drawable.option_selected_background) else time_span_option.resources.getDrawable(
-                        R.drawable.option_background
-                    )
+                    if (chartPreferenceItem.isSelected)
+                        time_span_option.resources.getDrawable(R.drawable.option_selected_background, null)
+                    else
+                        time_span_option.resources.getDrawable(R.drawable.option_background, null)
+
             containerView.setOnClickListener {
                 chartOptionClickListener?.onOptionClicked(list[position])
             }

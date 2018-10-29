@@ -19,6 +19,6 @@
             android:textAlignment="center"
             android:gravity="center"
             android:textStyle="bold"
-            android:textColor="@android:color/white"
+            android:textColor="@color/colorPrimaryText"
             android:background="@drawable/option_background"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

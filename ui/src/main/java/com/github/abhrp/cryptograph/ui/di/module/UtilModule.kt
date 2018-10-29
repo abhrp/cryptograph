@@ -1,7 +1,6 @@
 package com.github.abhrp.cryptograph.ui.di.module
 
 import android.app.Application
-import com.github.abhrp.cryptograph.domain.executor.PostExecutionThread
 import com.github.abhrp.cryptograph.ui.mapper.ChartItemMapper
 import com.github.abhrp.cryptograph.ui.util.*
 import dagger.Module
@@ -13,8 +12,8 @@ class UtilModule {
 
     @Provides
     @Singleton
-    fun getChartUtil(postExecutionThread: PostExecutionThread, chartItemMapper: ChartItemMapper) =
-        ChartUtil(postExecutionThread, chartItemMapper)
+    fun getChartUtil(chartItemMapper: ChartItemMapper) =
+        ChartUtil(chartItemMapper)
 
     @Provides
     @Singleton

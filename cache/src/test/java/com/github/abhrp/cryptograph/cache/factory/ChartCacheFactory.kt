@@ -9,14 +9,6 @@ object ChartCacheFactory {
     fun getRandomChartItemEntity(): ChartItemEntity =
         ChartItemEntity(DataFactory.randomLong(), DataFactory.randomDouble())
 
-    fun getRandomChartItemEntityList(count: Int): List<ChartItemEntity> {
-        val chartItems = mutableListOf<ChartItemEntity>()
-        repeat(count) {
-            chartItems.add(getRandomChartItemEntity())
-        }
-        return chartItems
-    }
-
     fun getRandomCachedChartItem(): CachedChartItem =
         CachedChartItem(1, DataFactory.randomString(), DataFactory.randomLong(), DataFactory.randomDouble())
 

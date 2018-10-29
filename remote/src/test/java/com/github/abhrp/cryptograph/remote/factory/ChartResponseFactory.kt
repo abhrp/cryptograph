@@ -9,23 +9,7 @@ object ChartResponseFactory {
     fun getRandomChartItemEntity(): ChartItemEntity =
         ChartItemEntity(DataFactory.randomLong(), DataFactory.randomDouble())
 
-    fun getRandomChartItemEntityList(count: Int): List<ChartItemEntity> {
-        val chartItems = mutableListOf<ChartItemEntity>()
-        repeat(count) {
-            chartItems.add(getRandomChartItemEntity())
-        }
-        return chartItems
-    }
-
     fun getRandomChartItem(): ChartItem = ChartItem(DataFactory.randomLong(), DataFactory.randomDouble())
-
-    fun getRandomChartItemList(count: Int): List<ChartItem> {
-        val chartItemList = mutableListOf<ChartItem>()
-        repeat(count) {
-            chartItemList.add(getRandomChartItem())
-        }
-        return chartItemList
-    }
 
     fun getRandomMarketPriceChartResponse(chartItemList: List<ChartItem>): MarketPriceChartResponse {
         return MarketPriceChartResponse(

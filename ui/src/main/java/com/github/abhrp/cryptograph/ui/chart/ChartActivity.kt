@@ -141,7 +141,7 @@ class ChartActivity : AppCompatActivity(), ChartOptionClickListener {
     }
 
     private fun fetchChartData(timeSpan: String, forceRefresh: Boolean) {
-        chartPageViewModel.fetchCharData(timeSpan, forceRefresh)
+        chartPageViewModel.fetchChartData(timeSpan, forceRefresh)
     }
 
     private fun setChartPreference(timeSpan: String) {

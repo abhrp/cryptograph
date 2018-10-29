@@ -53,7 +53,7 @@ class ChartPageViewModel @Inject constructor(
 
     fun getChartData(): LiveData<Resource<List<ChartItemView>>> = chartLiveData
 
-    fun fetchCharData(timeSpan: String, forceRefresh: Boolean) {
+    fun fetchChartData(timeSpan: String, forceRefresh: Boolean) {
         this.timeSpan = timeSpan
         chartLiveData.postValue(Resource(ResourceState.LOADING, null, null))
         getChart.execute(GetChartSubscriber(), GetChart.Params.forChart(timeSpan, forceRefresh))
@@ -78,7 +78,7 @@ class ChartPageViewModel @Inject constructor(
     inner class SetChartPreferenceSubscriber : DisposableCompletableObserver() {
         override fun onComplete() {
             chartPreferenceLiveData.postValue(Resource(ResourceState.NO_CHANGE, ChartPreferenceView(timeSpan), null))
-            fetchCharData(timeSpan, false)
+            fetchChartData(timeSpan, false)
         }
 
         override fun onError(e: Throwable) {

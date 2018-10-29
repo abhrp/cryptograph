@@ -7,6 +7,7 @@ import javax.inject.Inject
 
 class ConnectivityUtil @Inject constructor(private val context: Context) {
 
+    @Suppress("DEPRECATION")
     fun isConnectedToNetwork(): Boolean {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork: NetworkInfo? = cm.activeNetworkInfo

@@ -6,14 +6,15 @@ ext {
     kotlinVersion = "1.2.71"
     multiDexEnabled = true
 
-    supportLibraryVersion = "28.0.0"
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    
     roomVersion = "2.0.0"
     daggerVersion = "2.16"
     retrofitVersion = '2.4.0'
     retrofitRxJavaAdapterVersion = '1.0.0'
     okHttpVersion = '3.10.0'
-    archComponents = '2.0.0'
-    gsonVersion = '2.8.5'
+    archComponentsVersion = '2.0.0'
     androidTestRunner = '1.1.0-alpha3'
     androidTestRules = '1.1.0'
     androidxCoreTesting = '2.0.0'
@@ -22,9 +23,6 @@ ext {
     timberVersion = '4.7.1'
     glassFishAnnotationVersion = '10.0-b28'
     constraintLayoutVersion = '1.1.3'
-
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
 
     rxKotlinVersion = "2.3.0"
     javaxAnnotationVersion = "1.3.2"
@@ -82,7 +80,6 @@ ext {
             kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
             javaxAnnotation   : "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
             javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
-            androidAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}",
             okhttp            : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
             okhttpLogger      : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
             retrofit          : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
@@ -135,12 +132,12 @@ ext {
             javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
             javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
             rxAndroid      : "io.reactivex.rxjava2:rxandroid:${rxAndroid}",
-            archCommon     : "androidx.lifecycle:lifecycle-common:${archComponents}",
-            archRuntime    : "androidx.lifecycle:lifecycle-runtime:${archComponents}",
-            archCompiler   : "androidx.lifecycle:lifecycle-compiler:${archComponents}",
-            archExtensions : "androidx.lifecycle:lifecycle-extensions:${archComponents}",
-            livedata       : "androidx.lifecycle:lifecycle-livedata:${archComponents}",
-            viewmodel      : "androidx.lifecycle:lifecycle-viewmodel:${archComponents}"
+            archCommon     : "androidx.lifecycle:lifecycle-common:${archComponentsVersion}",
+            archRuntime    : "androidx.lifecycle:lifecycle-runtime:${archComponentsVersion}",
+            archCompiler   : "androidx.lifecycle:lifecycle-compiler:${archComponentsVersion}",
+            archExtensions : "androidx.lifecycle:lifecycle-extensions:${archComponentsVersion}",
+            livedata       : "androidx.lifecycle:lifecycle-livedata:${archComponentsVersion}",
+            viewmodel      : "androidx.lifecycle:lifecycle-viewmodel:${archComponentsVersion}"
     ]
 
     presentationTestDependencies = [
@@ -165,12 +162,12 @@ ext {
             daggerCompiler    : "com.google.dagger:dagger-compiler:$daggerVersion",
             dagger            : "com.google.dagger:dagger:$daggerVersion",
             rxAndroid         : "io.reactivex.rxjava2:rxandroid:${rxAndroid}",
-            archCommon        : "androidx.lifecycle:lifecycle-common:${archComponents}",
-            archRuntime       : "androidx.lifecycle:lifecycle-runtime:${archComponents}",
-            archCompiler      : "androidx.lifecycle:lifecycle-compiler:${archComponents}",
-            archExtensions    : "androidx.lifecycle:lifecycle-extensions:${archComponents}",
-            livedata          : "androidx.lifecycle:lifecycle-livedata:${archComponents}",
-            viewmodel         : "androidx.lifecycle:lifecycle-viewmodel:${archComponents}",
+            archCommon        : "androidx.lifecycle:lifecycle-common:${archComponentsVersion}",
+            archRuntime       : "androidx.lifecycle:lifecycle-runtime:${archComponentsVersion}",
+            archCompiler      : "androidx.lifecycle:lifecycle-compiler:${archComponentsVersion}",
+            archExtensions    : "androidx.lifecycle:lifecycle-extensions:${archComponentsVersion}",
+            livedata          : "androidx.lifecycle:lifecycle-livedata:${archComponentsVersion}",
+            viewmodel         : "androidx.lifecycle:lifecycle-viewmodel:${archComponentsVersion}",
             timber            : "com.jakewharton.timber:timber:${timberVersion}",
             supportAppCompat  : "androidx.appcompat:appcompat:${androidxAppCompat}",
             supportV4         : "androidx.legacy:legacy-support-v4:${androidxV4}",

@@ -36,10 +36,8 @@ class ChartCacheImpl @Inject constructor(
     }
 
     override fun getChartPreference(): Single<ChartPreferenceEntity> {
-        return Single.just(chartSharedPreferences.lastTimeSpanSelection)
-            .map {
-                ChartPreferenceEntity(it)
-            }
+        val chartPreferenceEntity = ChartPreferenceEntity(chartSharedPreferences.lastTimeSpanSelection)
+        return Single.just(chartPreferenceEntity)
     }
 
     override fun clearChart(timeSpan: String): Completable {
@@ -72,9 +70,12 @@ class ChartCacheImpl @Inject constructor(
         }
     }
 
+
     override fun isCacheExpired(timeSpan: String): Single<Boolean> {
         return chartDatabase.getCacheTimeDao().getCacheTime(timeSpan).toSingle().map {
             isExpired(it)
+        }.onErrorReturn {
+            true
         }
     }
 

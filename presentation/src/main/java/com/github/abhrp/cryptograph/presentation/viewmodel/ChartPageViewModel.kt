@@ -26,7 +26,10 @@ class ChartPageViewModel @Inject constructor(
 ) : ViewModel() {
     private val chartLiveData: MutableLiveData<Resource<List<ChartItemView>>> = MutableLiveData()
     private val chartPreferenceLiveData: MutableLiveData<Resource<ChartPreferenceView>> = MutableLiveData()
-    private var timeSpan: String = ""
+    private var timeSpan: String = DefaultPreferences.TIME_SPAN
+
+    val lastTimeSpan: String
+        get() = timeSpan
 
     override fun onCleared() {
         getChart.disposeAll()
@@ -51,6 +54,7 @@ class ChartPageViewModel @Inject constructor(
     fun getChartData(): LiveData<Resource<List<ChartItemView>>> = chartLiveData
 
     fun fetchCharData(timeSpan: String, forceRefresh: Boolean) {
+        this.timeSpan = timeSpan
         chartLiveData.postValue(Resource(ResourceState.LOADING, null, null))
         getChart.execute(GetChartSubscriber(), GetChart.Params.forChart(timeSpan, forceRefresh))
     }
@@ -62,7 +66,7 @@ class ChartPageViewModel @Inject constructor(
             t.timeSpan?.let {
                 timeSpan = it
             }
-            chartPreferenceLiveData.postValue(Resource(ResourceState.LOADING, ChartPreferenceView(timeSpan), null))
+            chartPreferenceLiveData.postValue(Resource(ResourceState.SUCCESS, ChartPreferenceView(timeSpan), null))
         }
 
         override fun onError(e: Throwable) {
@@ -74,7 +78,7 @@ class ChartPageViewModel @Inject constructor(
     inner class SetChartPreferenceSubscriber : DisposableCompletableObserver() {
         override fun onComplete() {
             chartPreferenceLiveData.postValue(Resource(ResourceState.NO_CHANGE, ChartPreferenceView(timeSpan), null))
-            fetchCharData(timeSpan, true)
+            fetchCharData(timeSpan, false)
         }
 
         override fun onError(e: Throwable) {

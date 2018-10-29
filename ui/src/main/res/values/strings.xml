@@ -13,4 +13,10 @@
     <string name="six_months_label">6 months</string>
     <string name="one_year_label">1 year</string>
     <string name="five_years_label">5 years</string>
+
+    <string name="chart_title">Daily bitcoin prices in USD</string>
+    <string name="line_series_name">BTC</string>
+
+    <string name="error_msg">Oops! Something went wrong.</string>
+    <string name="offline_message">You are currently offline</string>
 </resources>

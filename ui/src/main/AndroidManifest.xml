@@ -3,6 +3,10 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="com.github.abhrp.cryptograph">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
     <application
             android:name=".ui.CryptoGraphApp"
             android:allowBackup="false"
@@ -13,7 +17,9 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:replace="android:allowBackup">
-        <activity android:name=".ui.chart.ChartActivity">
+        <activity
+                android:name=".ui.chart.ChartActivity"
+                android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <action android:name="android.intent.action.VIEW"/>

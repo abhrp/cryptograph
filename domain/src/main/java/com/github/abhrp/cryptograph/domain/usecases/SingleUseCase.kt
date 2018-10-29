@@ -17,7 +17,6 @@ abstract class SingleUseCase<T, in Params> constructor(private val postExecution
         val observable = this.buildUseCaseSingle(params)
             .subscribeOn(Schedulers.io())
             .observeOn(postExecutionThread.scheduler)
-
         addDisposable(observable.subscribeWith(observer))
     }
 

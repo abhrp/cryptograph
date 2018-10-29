@@ -3,10 +3,7 @@ package com.github.abhrp.cryptograph.ui.di.module
 import android.app.Application
 import com.github.abhrp.cryptograph.domain.executor.PostExecutionThread
 import com.github.abhrp.cryptograph.ui.mapper.ChartItemMapper
-import com.github.abhrp.cryptograph.ui.util.ChartUtil
-import com.github.abhrp.cryptograph.ui.util.DataUtil
-import com.github.abhrp.cryptograph.ui.util.DateUtil
-import com.github.abhrp.cryptograph.ui.util.NumberUtil
+import com.github.abhrp.cryptograph.ui.util.*
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -30,5 +27,9 @@ class UtilModule {
     @Provides
     @Singleton
     fun getNumberUtil() = NumberUtil()
+
+    @Provides
+    @Singleton
+    fun getConnectivityUtil(application: Application) = ConnectivityUtil(application)
 
 }

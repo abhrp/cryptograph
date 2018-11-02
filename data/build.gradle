@@ -1,4 +1,5 @@
 apply plugin: 'kotlin'
+apply plugin: 'jacoco'
 
 dependencies {
     def dataDependencies = rootProject.ext.dataDependencies

@@ -1,0 +1,80 @@
+// Android Gradle Plugin out of the box only supports code coverage for instrumentation espresso) tests.
+// This add support for unit tests as well.
+
+def fileFilter = [
+        '**/R.class',
+        '**/R$*.class',
+        '**/BuildConfig.*',
+        '**/Manifest*.*',
+        '**/*Test*.*',
+        'android/**/*.*',
+
+        //Butterknife hack for multi-modules poroject
+        '**/R2.class',
+        '**/R2$*.class',
+        '**/*_ViewBinding*.*',
+
+        //Dagger 2
+        '**/*Dagger*Component*.*',
+        '**/*Module.*',
+        '**/*Module$*.*',
+        '**/*MembersInjector*.*',
+        '**/*_Factory*.*',
+        '**/*Provide*Factory*.*',
+
+        //Autofactory
+        '**/*Factory.*',
+
+        //Classes I intentionally don't want to test
+        '**/*Activity.*',
+        '**/App.class',
+        '**/*Adapter.*',
+        '**/*ViewHolder*.*',
+        '**/api/response/*.*',
+        '**/data/model/*.*',
+]
+
+task testCoverageReport(type: JacocoReport) {
+    group = 'Reporting'
+    description = "Generate Jacoco coverage reports for the debug build. Only unit tests."
+
+    //Make sure that tests from all modules are run before coverage report
+    dependsOn ":ui:testDebugUnitTest"
+    dependsOn ":presentation:testDebugUnitTest"
+    dependsOn ":cache:testDebugUnitTest"
+    dependsOn ":remote:test"
+    dependsOn ":data:test"
+    dependsOn ":domain:test"
+
+    classDirectories = files([
+            fileTree(dir: "$project.rootDir/ui/build/intermediates/javac/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/presentation/build/intermediates/javac/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/cache/build/intermediates/javac/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/remote/build/classes/kotlin/main", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/data/build/classes/kotlin/main", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/domain/build/classes/kotlin/main", excludes: fileFilter),
+    ])
+    def coverageSourceDirs = [
+            "$project.rootDir/app/src/main/java",
+            "$project.rootDir/presentation/src/main/java",
+            "$project.rootDir/cache/src/main/java",
+            "$project.rootDir/remote/src/main/java",
+            "$project.rootDir/data/src/main/java",
+            "$project.rootDir/domain/src/main/java",
+    ]
+    additionalSourceDirs = files(coverageSourceDirs)
+    sourceDirectories = files(coverageSourceDirs)
+    executionData = fileTree(dir: project.rootDir, includes: [
+            'ui/build/jacoco/testDebugUnitTest.exec',
+            'presentation/build/jacoco/testDebugUnitTest.exec',
+            'cache/build/jacoco/testDebugUnitTest.exec',
+            'remote/build/jacoco/test.exec',
+            'data/build/jacoco/test.exec',
+            'domain/build/jacoco/test.exec',
+    ])
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}

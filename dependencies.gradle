@@ -45,6 +45,8 @@ ext {
     anyChartVersion = '1.0.5'
     multidexVersion = '2.0.0'
 
+    instaBugVersion = '8.0.11'
+
     domainDependencies = [
             javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
             javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
@@ -182,7 +184,8 @@ ext {
             constraintLayout  : "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}",
             constraintSolver  : "androidx.constraintlayout:constraintlayout-solver:${constraintLayoutVersion}",
             anyChart          : "com.github.AnyChart:AnyChart-Android:${anyChartVersion}",
-            multidex          : "androidx.multidex:multidex:${multidexVersion}"
+            multidex          : "androidx.multidex:multidex:${multidexVersion}",
+            instabug          : "com.instabug.library:instabug:${instaBugVersion}"
     ]
 
     uiTestDependencies = [

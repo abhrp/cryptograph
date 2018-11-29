@@ -18,10 +18,18 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            testCoverageEnabled true
+        }
     }
 
     testOptions {
         unitTests {
+            all {
+                testLogging {
+                    events 'passed', 'skipped', 'failed'
+                }
+            }
             includeAndroidResources = true
         }
     }

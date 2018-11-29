@@ -21,17 +21,29 @@ android {
 
     }
 
+    testOptions {
+        unitTests {
+            all {
+                testLogging {
+                    events 'passed', 'skipped', 'failed'
+                }
+            }
+            includeAndroidResources = true
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            testCoverageEnabled true
+        }
     }
 
-    testOptions {
-        unitTests {
-            includeAndroidResources = true
-        }
+    defaultConfig {
+        buildConfigField "String", "INSTABUG_KEY", "\"\""
     }
 
     compileOptions {
@@ -77,6 +89,7 @@ dependencies {
     implementation uiDependencies.constraintSolver
     implementation uiDependencies.anyChart
     implementation uiDependencies.multidex
+    implementation uiDependencies.instabug
 
     kapt uiDependencies.daggerProcessor
     kapt uiDependencies.daggerCompiler

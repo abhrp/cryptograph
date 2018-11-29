@@ -1,6 +1,7 @@
 // Android Gradle Plugin out of the box only supports code coverage for instrumentation espresso) tests.
 // This add support for unit tests as well.
-
+//./gradlew domain:cleanTest domain:test data:cleanTest data:test remote:cleanTest remote:test cache:cleanTestDebugUnitTest cache:testDebugUnitTest presentation:cleanTestDebugUnitTest presentation:testDebugUnitTest ui:cleanTestDebugUnitTest ui:testDebugUnitTest
+//
 def fileFilter = [
         '**/R.class',
         '**/R$*.class',
@@ -39,9 +40,15 @@ task testCoverageReport(type: JacocoReport) {
     description = "Generate Jacoco coverage reports for the debug build. Only unit tests."
 
     //Make sure that tests from all modules are run before coverage report
-    dependsOn ":ui:testDebugUnitTest"
-    dependsOn ":presentation:testDebugUnitTest"
-    dependsOn ":cache:testDebugUnitTest"
+    dependsOn ":ui:cleanTest"
+    dependsOn ":presentation:cleanTest"
+    dependsOn ":cache:cleanTest"
+    dependsOn ":remote:cleanTest"
+    dependsOn ":data:cleanTest"
+    dependsOn ":domain:cleanTest"
+    dependsOn ":ui:test"
+    dependsOn ":presentation:test"
+    dependsOn ":cache:test"
     dependsOn ":remote:test"
     dependsOn ":data:test"
     dependsOn ":domain:test"

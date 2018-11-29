@@ -7,3 +7,4 @@
 .externalNativeBuild
 /coverage
 /.idea
+/ui/jacoco.exe
